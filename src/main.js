@@ -1,11 +1,12 @@
-// server is running on port 3000
 const express = require("express");
-
+const dotenv = require("dotenv");
+dotenv.config();
 async function main() {
   const app = express();
-
-  app.listen(3000, () => {
-    console.log("server runing on port http://localhost:3000");
+  const port = process.env.PORT;
+  require("./config/mongoose.config");
+  app.listen(port, () => {
+    console.log(`server: http://localhost:${port}`);
   });
 }
 main();
