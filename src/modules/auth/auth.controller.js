@@ -1,4 +1,4 @@
-const authService = require("./auth.service");
+const authService = new (require("./auth.service"))();
 const autoBind = require("auto-bind");
 const { AuthMessage } = require("./auth.messages");
 
@@ -28,3 +28,5 @@ class AuthController {
     }
   }
 }
+
+module.exports = AuthController;
