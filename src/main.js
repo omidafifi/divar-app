@@ -13,6 +13,8 @@ async function main() {
   app.use(express.urlencoded({ extended: true }));
 
   SwaggerConfig(app);
+  NotFoundHandler(app);
+  AllExceptionHandler(app);
   app.use(mainRouter);
   app.listen(port, () => {
     console.log(`server: http://localhost:${port}`);
