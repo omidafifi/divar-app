@@ -25,10 +25,16 @@ class AuthController {
     try {
       const { mobile, code } = req.body;
       const token = await this.#service.checkOTP(mobile, code);
-      return res.json({
-        message: AuthMessage.LoginSuccessfully,
-        token,
-      });
+      return res
+        .cookie("accessToken", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+        })
+        .status(200)
+        .json({
+          message: AuthMessage.LoginSuccessfully,
+          token,
+        });
     } catch (error) {
       next(error);
     }
