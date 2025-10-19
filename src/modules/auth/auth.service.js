@@ -2,6 +2,7 @@ const UserModel = require("../user/user.model");
 const createHttpError = require("http-errors");
 const { randomInt } = require("crypto");
 const { AuthMessage } = require("./auth.messages");
+const jwt = require("jsonwebtoken");
 
 class AuthService {
   #model = UserModel;
@@ -42,10 +43,16 @@ class AuthService {
 
     if (!user.verifiedMobile) {
       user.verifiedMobile = true;
-      await user.save();
     }
 
-    return user;
+    const accessToken = this.signToken({
+      mobile: user.mobile,
+      userId: user._id,
+    });
+
+    user.accessToken = accessToken;
+    await user.save();
+    return accessToken;
   }
 
   async checkExistByMobile(mobile) {
@@ -54,6 +61,10 @@ class AuthService {
       throw new createHttpError.NotFound(AuthMessage.NotFound);
     }
     return user;
+  }
+
+  signToken(payload) {
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1y" });
   }
 }
 
