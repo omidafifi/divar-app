@@ -1,0 +1,83 @@
+<aside>
+  <div class="container sidebar-padding">
+    <h2 class="sidebar-title">دسته ها</h2>
+
+    <ul class="sidebar-ul">
+      <%if(typeof categories !== 'undefined' && categories && categories.length > 0){%>
+        <%for(let category of categories){%>
+          <li class="sidebar-li">
+            <a href="/?category=<%=category.slug%>" class="sidebar-a">
+              <img src="<%=category.icon || '/home/img/home.svg'%>" class="sidebar-img" alt="<%=category.name%>" />
+              <%=category.name%>
+            </a>
+          </li>
+        <%}%>
+      <%}else if(typeof locals !== 'undefined' && locals.categories && locals.categories.length > 0){%>
+        <%for(let category of locals.categories){%>
+          <li class="sidebar-li">
+            <a href="/?category=<%=category.slug%>" class="sidebar-a">
+              <img src="<%=category.icon || '/home/img/home.svg'%>" class="sidebar-img" alt="<%=category.name%>" />
+              <%=category.name%>
+            </a>
+          </li>
+        <%}%>
+      <%}else{%>
+        <!-- دسته‌بندی‌های پیش‌فرض در صورت عدم وجود در دیتابیس -->
+        <li class="sidebar-li">
+          <a href="/?category=amlak" class="sidebar-a">
+            <img src="/home/img/home.svg" class="sidebar-img" alt="املاک" />
+            املاک
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=vasayel-naghliye" class="sidebar-a">
+            <img src="/home/img/car.svg" class="sidebar-img" alt="وسایل نقلیه" />
+            وسایل نقلیه
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=kala-digital" class="sidebar-a">
+            <img src="/home/img/mobile.svg" class="sidebar-img" alt="کالای دیجیتال" />
+            کالای دیجیتال
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=khane-ashpazkhane" class="sidebar-a">
+            <img src="/home/img/home.svg" class="sidebar-img" alt="خانه و آشپزخانه" />
+            خانه و آشپزخانه
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=khadamat" class="sidebar-a">
+            <img src="/home/img/paint.svg" class="sidebar-img" alt="خدمات" />
+            خدمات
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=vasayel-shakhsi" class="sidebar-a">
+            <img src="/home/img/mobile.svg" class="sidebar-img" alt="وسایل شخصی" />
+            وسایل شخصی
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=sargarmi-faragh" class="sidebar-a">
+            <img src="/home/img/dice.svg" class="sidebar-img" alt="سرگرمی و فراغت" />
+            سرگرمی و فراغت
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=tajhizat-sanati" class="sidebar-a">
+            <img src="/home/img/chair.svg" class="sidebar-img" alt="تجهیزات و صنعتی" />
+            تجهیزات و صنعتی
+          </a>
+        </li>
+        <li class="sidebar-li">
+          <a href="/?category=estekhdam-kariabi" class="sidebar-a">
+            <img src="/home/img/suitcase.svg" class="sidebar-img" alt="استخدام و کاریابی" />
+            استخدام و کاریابی
+          </a>
+        </li>
+      <%}%>
+    </ul>
+  </div>
+</aside>
